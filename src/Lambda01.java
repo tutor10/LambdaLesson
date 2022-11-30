@@ -21,104 +21,107 @@ public class Lambda01 {
 
         List<Integer> sayi = new ArrayList<>(Arrays.asList(34, 22, 16, 11, 35, 20, 63, 21, 65, 44, 66, 64, 81, 38, 15));
         printElStructured(sayi);
-        System.out.println("\n***************");
+        System.out.println(" \n ******");
         printElFunctional(sayi);
-        System.out.println("\n***************");
+        System.out.println(" \n ******");
         printElFunctional1(sayi);
-        System.out.println("\n***************");
+        System.out.println(" \n ******");
         printElFunctional2(sayi);
-        System.out.println("\n***************");
+        System.out.println(" \n ******");
         printCiftElFunctional(sayi);
-        System.out.println("\n***************");
+        System.out.println(" \n ******");
         printCiftElStructured(sayi);
-        System.out.println("\n***************");
-        printCiftEOtcKckFunctional(sayi);
-        System.out.println("\n***************");
-        printCiftOtBykFunctional(sayi);
+        System.out.println(" \n ******");
+        printElStructured(sayi);
+        System.out.println(" \n ******");
+        printCiftOtcKckFunctional(sayi);
+        System.out.println(" \n ******");
+        printCiftOtzBykFunctional(sayi);
+
+
     }
-
-    //TASK  : "Structured Programming" kullanarak list elemanlarını aynı satirda
-    // aralarında bosluk olacak sekilde print ediniz.
-
+    //TASK  : "Structured Programming" kullanarak list elemanlarını aynı satirda aralarında bosluk olacak sekilde print ediniz.
     public static void printElStructured(List<Integer> sayi) {
-
         for (Integer w : sayi) {
             System.out.print(w + " ");
         }
     }
-
-    //TASK  : "functional Programming" kullanarak list elemanlarını aynı satirda
-    // aralarında bosluk olacak sekilde print ediniz.
-
+    //TASK  : "functional Programming" kullanarak list elemanlarını aynı satirda aralarında bosluk olacak sekilde print ediniz.
     public static void printElFunctional(List<Integer> sayi) {
-
         sayi.
                 stream().
-                forEach((t) -> System.out.print(t + " "));//Lambda expressions
-
+                forEach((t) -> System.out.print(t + " ")); // lambda expression
     }
-
     public static void printElFunctional1(List<Integer> sayi) {
-
         sayi.
                 stream().
-                forEach(System.out::print);//method referance // System.out.print
+                forEach(System.out::print); // method referance  // System.out.print
     }
-    //--->kendimiz bir method olusturalim
-
+    // ---> kendimiz bir method oluşturalım
     public static void yazdir(int a) {
-        System.out.print(a + " ");
+        System.out.print(a +" ");
     }
-
+    public static void yazdir(String a) {
+        System.out.print(a +" ");
+    }
     public static void printElFunctional2(List<Integer> sayi) {
-
         sayi.
                 stream().
-                forEach(Lambda01::yazdir);//method referance
+                forEach(Lambda01::yazdir); // method referance  //
     }
-    //TASK  : functional Programming ile list elemanlarinin  cift olanlarini
-    // ayni satirda aralarina bosluk birakarak print ediniz.
-
+    //TASK  : functional Programming ile list elemanlarinin  cift olanlarini ayni satirda aralarina bosluk birakarak print ediniz.
     public static void printCiftElFunctional(List<Integer> sayi) {
-
         sayi.
                 stream().
-                filter(t -> t % 2 == 0). //Lambda expression
+                filter(t->t % 2 ==0).  // lambda expression
                 forEach(Lambda01::yazdir);
+
     }
-//TASK  : structural Programming ile list elemanlarinin  cift olanlarini
-// ayni satirda aralarina bosluk birakarak print ediniz
+    // yukardaki Task'i filter() kısmını method referance ile yapalım
+    public static boolean ciftBul(int a) {
+        return a % 2 == 0; // = =
+    }
+    public static void printCiftElFunctional1(List<Integer> sayi) {
+        sayi.
+                stream().
+                filter(Lambda01::ciftBul).  // method refrance
+                forEach(Lambda01::yazdir);
 
+    }
+
+    //TASK  : structural Programming ile list elemanlarinin  cift olanlarini ayni satirda aralarina bosluk birakarak print ediniz.
     public static void printCiftElStructured(List<Integer> sayi) {
-
-        for (Integer w : sayi) {
+        for (Integer w: sayi) {
             if (w % 2 == 0) {
                 System.out.print(w + " ");
             }
         }
+
     }
-
-//TASK :functional Programming ile list elemanlarinin 34 den kucuk cift
-// olanlarini ayni satirda aralarina bosluk birakarak print ediniz.
-
-    public static void printCiftEOtcKckFunctional(List<Integer> sayi) {
-
+    //TASK :functional Programming ile list elemanlarinin 34 den kucuk cift olanlarini ayni satirda aralarina bosluk birakarak print ediniz.
+    public static void printCiftOtcKckFunctional(List<Integer> sayi) {
         sayi.
                 stream().
-                filter(t -> t % 2 == 0).
-                filter(t -> t < 34).
-                //filter(t->t%2==0 && t<34).
+                filter(t-> t %2 ==0).
+                filter(t-> t < 34).
+                //filter(t-> t %2 ==0 && t < 34).
                         forEach(Lambda01::yazdir);
+
     }
-//Task : functional Programming ile list elemanlarinin 34 den buyk veya cift olanlarini
-// ayni satirda aralarina bosluk birakarak print ediniz.
-
-    public static void printCiftOtBykFunctional(List<Integer> sayi) {
-
+    //Task : functional Programming ile list elemanlarinin 34 den buyk veya cift olanlarini ayni satirda aralarina bosluk birakarak print ediniz.
+    public static void printCiftOtzBykFunctional(List<Integer> sayi) {
         sayi.
                 stream().
-                filter(t -> t % 2 == 0 || t > 34).
-                forEach(Lambda01::yazdir);//foreach((t)->System.out.print(t+" ));
+                filter(t -> t %2==0 || t>34).
+                forEach(Lambda01::yazdir);   //forEach((t) -> System.out.print(t + " "));
+
 
     }
+
 }
+
+/* * Yazili Olmayan Kural *
+ * Lambda kullanirken mumkun mertebe "lambda expression"dan kacinilmasi önerilir.
+ * Eger mumkunse "method referance" kullanilmasi tavsiye edilir.
+
+ */
